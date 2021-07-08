@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Staff{% endblock %}
+{% block css %}
+{{block.super}}
+<link href="{% static 'sass/prices-bem.css' %}" rel="stylesheet" />
+<link rel="stylesheet" media="print" href="{% static 'css/print.css' %}">
+{% endblock %}
+{% block content %}
+<section class="py-5 text-center">
+  <div class="container">
+    <h3 class="bold">УВАЖАЕМЫЕ КЛИЕНТЫ!</h3>
+    <p>Ознакомьтесь, пожалуйста, с нашим прайс-листом.</p>
+    <small>*ДАННАЯ СТОИМОСТЬ НЕ ЯВЛЯЕТСЯ ИТОГОВОЙ</small>
+  </div>
+</section>
+
+<main class="prices">
+  <table class="prices__table">
+    <thead class="prices__table--head">
+      <tr>
+        <th>№</th>
+        <th>НАИМЕНОВАНИЕ УСЛУГИ</th>
+        <th>СТОИМОСТЬ</th>
+      </tr>
+    </thead>
+    <tbody class="prices__table--body">
+      <tr>
+        <th scope="row">1</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">5</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">6</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">7</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">8</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">9</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+      <tr>
+        <th scope="row">10</th>
+        <td>Классический маникюр</td>
+        <td>750</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+{% endblock content %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Staff{% endblock %}
+{% block content %}
+<section class="py-5 mt-5">
+  <div class="container">
+    <h2 class="mb-5 text-center">Список заявок на обратный звонок</h2>
+    <form action="POST">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Номер телефона</th>
+            <th scope="col">Email</th>
+            <th scope="col">Услуга</th>
+            <th scope="col" style="width:  8.33%"></th>
+            <th scope="col" style="width:  8.33%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr id="{{order.id}}">
+            <th scope="row">{{order.id}}</th>
+            <td><input type="text" class="clientName" value="{{order.client_name}}" disabled></td>
+            <td><input type="text" class="clientPhone" value="{{order.client_phone}}" disabled></td>
+            <td><input type="text" class="clientEmail" value="{{order.client_email}}" disabled></td>
+            <td><input type="text" class="clientComment" value="{{order.client_comment}}" disabled></td>
+            <td>
+              <button type="button" class="btn btn-outline-warning changeBtn">Изменить</button>
+              <button type="button" class="btn btn-outline-success d-none saveBtn">Сохранить</button>
+            </td>
+            <td><button type="button" class="btn btn-outline-danger deleteBtn">Удалить</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </form>
+  </div>
+</section>
+
+{% endblock content %}
+
+{% block javascript %}
+{{block.super }}
+<script src="{% static 'js/orders.js' %}"></script>
+{% endblock %}

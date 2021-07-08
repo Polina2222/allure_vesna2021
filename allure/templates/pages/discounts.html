@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Акции{% endblock %}
+{% block content %}
+<section class="py-5 text-center">
+  <div class="container">
+    <h3 class="bold">ДОРОГИЕ КЛИЕНТЫ!</h3>
+    <p>Спешим порадовать вас очередными супер акциями со скидками на маникюр и педикюр!</p>
+  </div>
+  <button class="btn btn-danger" onclick="location.href='{% url 'discounts_disabled' %}'">Версия для слабовидящих</button>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{% static 'images/manicure.png' %}" class="card-img" alt="Manicure">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Акция для наших клиенток</h5>
+                <p class="card-text">Акция для наших клиенток. Вы можете в течение месяца посетить наш салон и сделать
+                  бесплатно любой нюдовый маникюр. Для этого вам необходимо:
+                </p>
+                <ul>
+                  <li>Подписаться на нас в Instagram</li>
+                  <li>Рассказать о нас в своей истории</li>
+                  <li>Оставить коментарий под любым постом</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{% static 'images/manicure.png' %}" class="card-img" alt="Manicure">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Акция 2+1</h5>
+                <p class="card-text">Успей скорее навести красоту и бонусом получить раслабляющий массаж рук. Для этого
+                  вам необходимо:
+                </p>
+                <ul>
+                  <li>Записаться онлайн в наш салон</li>
+                  <li>Выбрать услугу маникюр+педикюр</li>
+                  <li>Прийти без опоздания в значенное вами время</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="{% static 'images/manicure-2.png' %}" class="card-img" alt="Manicure">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Дизайн в подарок</h5>
+                <p class="card-text">Если ты любишь эксперемнировать, то скорее учавствуй в нашей крутой акции. Для
+                  этого вам необходимо:
+                </p>
+                <ul>
+                  <li>Выложить фото вашего маникюра в Instagram</li>
+                  <li>Отметить наш аккаунт</li>
+                  <li>Поделиться отзывом</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+{% endblock content %}

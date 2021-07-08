@@ -1,0 +1,183 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <title>{% block title %}Allure{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Behold My Awesome Project!"/>
+  <meta name="author" content="Daniel Roy Greenfeld"/>
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}"/>
+  <script src="https://kit.fontawesome.com/c62f3532ad.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500;600&display=swap" rel="stylesheet">
+  
+ 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/discounts-disabled.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="z-index: 1000; padding: 1em;">
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'home' %}" id="navlink-1" tabindex="1">Главная</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'staff' %}" id="navlink-2" tabindex="2">Наши специалисты</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'discounts' %}" id="navlink-3" tabindex="3">Акции</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'prices' %}" id="navlink-4" tabindex="4">Прайс-лист</a>
+      </li>
+      {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'requests' %}" id="navlink-5" tabindex="5">Список заявок</a>
+        </li>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a class="btn btn-light" href="{% url 'account_logout' %}" id="navlink-6" tabindex="6">Выйти</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="sign-up-link" class="btn btn-light mr-1" href="{% url 'account_signup' %}" tabindex="6">Регистрация</a>
+        </li>
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="log-in-link" class="btn btn-light" href="{% url 'account_login' %}" tabindex="7">Войти</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<section class="py-5 text-center">
+  <div class="container" id="heading" tabindex="8">
+    <h3 class="bold">ДОРОГИЕ КЛИЕНТЫ!</h3>
+    <p>Спешим порадовать вас очередными супер акциями со скидками на маникюр и педикюр!</p>
+  </div>
+  <button class="btn btn-danger" onclick="location.href='{% url 'discounts' %}'" id="switch-btn">Обычная версия</button>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-5" id="card-1" tabindex="9">
+          <div class="row no-gutters">
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title">Акция для наших клиенток</h5>
+                <p class="card-text">Акция для наших клиенток. Вы можете в течение месяца посетить наш салон и сделать
+                  бесплатно любой нюдовый маникюр. Для этого вам необходимо:
+                </p>
+                <ul>
+                  <li>Подписаться на нас в Instagram</li>
+                  <li>Рассказать о нас в своей истории</li>
+                  <li>Оставить коментарий под любым постом</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card mb-5" id="card-2" tabindex="10">
+          <div class="row no-gutters">
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title">Акция 2+1</h5>
+                <p class="card-text">Успей скорее навести красоту и бонусом получить раслабляющий массаж рук. Для этого
+                  вам необходимо:
+                </p>
+                <ul>
+                  <li>Записаться онлайн в наш салон</li>
+                  <li>Выбрать услугу маникюр+педикюр</li>
+                  <li>Прийти без опоздания в значенное вами время</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card mb-5" id="card-3" tabindex="11">
+          <div class="row no-gutters">
+            <div class="col">
+              <div class="card-body">
+                <h5 class="card-title">Дизайн в подарок</h5>
+                <p class="card-text">Если ты любишь эксперемнировать, то скорее учавствуй в нашей крутой акции. Для
+                  этого вам необходимо:
+                </p>
+                <ul>
+                  <li>Выложить фото вашего маникюра в Instagram</li>
+                  <li>Отметить наш аккаунт</li>
+                  <li>Поделиться отзывом</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<footer class="footer">
+  <div class="container h-100">
+    <div class="row justify-content-between h-100 align-items-center">
+      <div class="col">
+        <div id="footer-1" tabindex="12">Cалон ALLURE в Москве</div>
+        <div class="icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-vk"></i></a>
+        </div>
+      </div>
+      <div class="col d-flex flex-column h-50 justify-content-between" id="footer-2" tabindex="13">
+        <span> г. Москва, ул. Арбат, 22с1</span>
+        <span>Время работы: ежедневно:
+            10:00 - 22:00 </span>
+        <span> +7(945) 555-55-55</span>
+      </div>
+    </div>
+  </div>
+</footer>
+{% block modal %} {% endblock modal %}
+{% block javascript %}
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="{% static 'js/project.js' %}"></script>
+  <script src="{% static 'js/discountsDisabled.js' %}"></script>
+
+{% endblock javascript %}
+</body>
+
+</html>
+
+

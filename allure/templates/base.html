@@ -1,0 +1,156 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <title>{% block title %}Allure{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Behold My Awesome Project!"/>
+  <meta name="author" content="Daniel Roy Greenfeld"/>
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}"/>
+  <script src="https://kit.fontawesome.com/c62f3532ad.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;500;600&display=swap" rel="stylesheet">
+  {% block css %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <link href="{% static 'css/project.min.css' %}" rel="stylesheet"/>
+  {% endblock %}
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #BB7D9E;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}" alt="Logo">
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="background-color: #BB7D9E; z-index: 1000; padding: 1em;">
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'home' %}">Главная</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'staff' %}">Наши специалисты</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'discounts' %}">Акции</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-light" href="{% url 'prices' %}">Прайс-лист</a>
+      </li>
+      {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link text-light" href="{% url 'requests' %}">Список заявок</a>
+        </li>
+      {% endif %}
+      {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a class="btn btn-light" href="{% url 'account_logout' %}">Выйти</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="sign-up-link" class="btn btn-light mr-1" href="{% url 'account_signup' %}">Регистрация</a>
+        </li>
+        <li class="nav-item">
+          {# URL provided by django-allauth/account/urls.py #}
+          <a id="log-in-link" class="btn btn-light" href="{% url 'account_login' %}">Войти</a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+{% block content %}
+{% endblock content %}
+
+<footer class="footer">
+  <div class="container h-100">
+    <div class="row justify-content-between h-100 align-items-center">
+      <div class="col">
+        <div>Cалон ALLURE в Москве</div>
+        <div class="icons">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-vk"></i></a>
+        </div>
+      </div>
+      <div class="col d-flex flex-column h-50 justify-content-between">
+        <span> г. Москва, ул. Арбат, 22с1</span>
+        <span>Время работы: ежедневно:
+            10:00 - 22:00 </span>
+        <span> +7(945) 555-55-55</span>
+      </div>
+      <div class="col">
+        <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.4823602158344!2d37.59085431567997!3d55.7501224996665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54bb330ee0fdf%3A0x5e592a90283c9e82!2z0YPQuy4g0JDRgNCx0LDRgiwgMjIsINCc0L7RgdC60LLQsCwgMTE5MDAy!5e0!3m2!1sru!2sru!4v1610440894031!5m2!1sru!2sru"
+                width="100%" height="300" frameborder="0" style="border:0;" aria-hidden="false" tabindex="0"></iframe>
+      </div>
+    </div>
+  </div>
+</footer>
+<div class="modal fade" id="requestCallBack" data-keyboard="false" tabindex="-1" role="dialog"
+     aria-labelledby="requestCallBackLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="requestCallBackLabel">Обратный звонок</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'home' %}" method="post">
+          <div class="form-group">
+            <label for="name" class="-label">Введите ваше имя:</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Например, Екатерина"/>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="form-label">Введите номер телефона:</label>
+            <input type="tel" name="phone" class="form-control" id="phone" placeholder="+7(999) 999 99 99"/>
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Введите email:</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="mail@mail.ru"/>
+          </div>
+          <div class="form-group">
+            <label for="service" class="form-label">Введите услугу:</label>
+            <input type="text" name="comment" class="form-control" id="service" placeholder="Например, ноготочки"/>
+          </div>
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-auto mr-auto">
+              <button type="submit" class="btn btn-primary">Отправить форму</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% block modal %} {% endblock modal %}
+{% block javascript %}
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="{% static 'js/project.js' %}"></script>
+{% endblock javascript %}
+</body>
+
+</html>

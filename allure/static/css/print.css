@@ -1,0 +1,17 @@
+@media print {
+  @page {
+    margin: 1cm;
+  }
+  footer {
+    display: none;
+  }
+  .prices__table {
+    border: 1px solid rgb(133, 133, 133);
+  }
+  .prices__table td,
+  .prices__table tr,
+  .prices__table th {
+    padding: 20px;
+    border: 1px solid rgb(133, 133, 133);
+  }
+}
